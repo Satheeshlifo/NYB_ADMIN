@@ -3,8 +3,9 @@ Feature: New sample Product from existing vendor with payment receipt as documen
 
 Background:
     Given I visit the NYB admin website and log in as a user with create, edit, and view access,
-    When I navigate to the Inventory module,
-    Then I verify the Inventory module URL,
+    When I navigate to the Inventory module and verified the landing page URL,
+    #When I navigate to the Inventory module,
+    #Then I verify the Inventory module URL,
     When I choose the document type as "Payment_Reciept",
     When I select the warehouse,
     When I select the vendor,

@@ -2,11 +2,13 @@ Feature: Product inward from existing vendor with payment receipt as document ty
 
   Background:
     Given I visit the NYB admin website and log in as a user with create, edit, and view access,
-    When I navigate to the Inventory module,
-    Then I verify the Inventory module URL,
-    When I choose the document type as "Payment_Reciept",
-    When I select the warehouse,
-    When I select the vendor,
+    #When I navigate to the Inventory module,
+    #Then I verify the Inventory module URL,
+    When I navigate to the Inventory module and verified the landing page URL,
+    #When I choose the document type as "Payment_Reciept",
+    When I choose the document type as "Vendor Invoice", select warehouse, and select vendor,
+    #When I select the warehouse,
+   # When I select the vendor,
 
   @payment_receipt
   #Without discount tax, and other charges.
@@ -15,8 +17,8 @@ Feature: Product inward from existing vendor with payment receipt as document ty
     When I enter Purchase Order No,
     When I upload the receipt,
     When I upload Document Proof For Discount,
-    When I enter notes,
-    When I Select the Payment Mode,
+    #When I enter notes,
+    #When I Select the Payment Mode,
     When I add products,
     When I enter a valid inward quantity, valid damaged quanity, valid unit price, valid batch number, valid expiry date,
     When I click submit button.

@@ -2,8 +2,9 @@ Feature: Product Transfer Between Warehouses with Intra-Warehouse Transfer as Do
 
   Background:
     Given I visit the NYB admin website and log in as a user with create, edit, and view access,
-    When I navigate to the Inventory module,
-    Then I verify the Inventory module URL,
+    #When I navigate to the Inventory module,
+    #Then I verify the Inventory module URL,
+    When I navigate to the Inventory module and verified the landing page URL,
     When I choose the document type as "IntrawarehouseTransfer Invoice",
     When I select the from warehouse,
     When I select the to warehouse,

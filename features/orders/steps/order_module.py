@@ -5,6 +5,7 @@ import time
 import allure
 from behave import *
 
+from features.Inventory.steps.create_inbound_inventory import doc_type_02
 from features.orders.pages.url_verification import UrlVerification
 from features.orders.pages.order import HeaderNavigators
 from features.orders.utilities import ConfigReader

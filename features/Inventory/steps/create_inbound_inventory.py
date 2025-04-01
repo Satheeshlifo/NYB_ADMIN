@@ -11,6 +11,8 @@ from features.Inventory.utilities import ConfigReader
 doc_type_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE01")
 doc_type_02 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE02")
 doc_type_03 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE03")
+doc_type_04 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE04")
+doc_type_05 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE05")
 warehouse_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "WAREHOUSE")
 vendor_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "VENDORS_01")
 tax_no_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "TAX")
@@ -725,7 +727,8 @@ def step_impl(context):
 
 @when(u'I choose the document type as "Payment_Reciept",')
 def Payment_Reciepts(context):
-    context.cvp.document_type("VALID INPUTS", "SOURCE_TYPE05")
+    context.driver.implicitly_wait(20)
+    context.cvp.document_type("SOURCE_TYPE05")
 
 
 @when(u'I enter Payment Receipt No,')
