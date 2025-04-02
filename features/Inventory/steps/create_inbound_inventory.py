@@ -14,7 +14,7 @@ doc_type_03 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE
 doc_type_04 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE04")
 doc_type_05 = ConfigReader.create_inbound_inventory("VALID INPUTS", "SOURCE_TYPE05")
 warehouse_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "WAREHOUSE")
-vendor_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "VENDORS_01")
+vendors = ConfigReader.create_inbound_inventory("VALID INPUTS", "VENDORS_01")
 tax_no_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "TAX")
 discount = ConfigReader.create_inbound_inventory("VALID INPUTS", "DISCOUNT")
 invoice_no_01 = ConfigReader.create_inbound_inventory("VALID INPUTS", "VENDOR_INVOICE_NO")
@@ -428,8 +428,8 @@ def submit(context):
 def step_imp(context):
     with allure.step(f"Verify the choosed document type."):
         try:
-            actual_doc_type = context.cvp.verify_document_type(doc_type_02)
-            allure.attach(f"{doc_type_02}",
+            actual_doc_type = context.cvp.verify_document_type(doc_type_05)
+            allure.attach(f"{doc_type_05}",
                           name="Expected document type", attachment_type=allure.attachment_type.TEXT)
             allure.attach(f"{actual_doc_type}",
                           name="Actual document type", attachment_type=allure.attachment_type.TEXT)
@@ -440,7 +440,7 @@ def step_imp(context):
                           name="Document type selection is unsuccessfull",
                           attachment_type=allure.attachment_type.PNG)
 
-            allure.attach(f"{doc_type_02}",
+            allure.attach(f"{doc_type_05}",
                           name="Expected document type", attachment_type=allure.attachment_type.TEXT)
 
             allure.attach(f"{actual_doc_type}",
@@ -468,8 +468,8 @@ def step_imp(context):
 
     with allure.step(f"Verify the choosed vendor."):
         try:
-            actual_vendor = context.cvp.verify_vendor(vendor_01)
-            allure.attach(f"{vendor_01}",
+            actual_vendor = context.cvp.verify_vendor(vendors)
+            allure.attach(f"{vendors}",
                           name="Expected vendor", attachment_type=allure.attachment_type.TEXT)
             allure.attach(f"{actual_vendor}",
                           name="Actual vendor", attachment_type=allure.attachment_type.TEXT)

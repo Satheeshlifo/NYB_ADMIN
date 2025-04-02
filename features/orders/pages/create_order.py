@@ -3,6 +3,7 @@ from lib2to3.fixes.fix_input import context
 
 from selenium.common import exceptions, UnexpectedAlertPresentException
 from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.common.by import By
 #from selenium.webdriver.common.by import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,8 +14,8 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from features.Inventory.pages.create_inbound_inventory import CreateVendorPackingSlip
 import re
 from features.orders.pages.base_page import BasePage
+from features.orders.pages.url_verification import UrlVerification
 from features.orders.utilities import ConfigReader
-
 
 
 class CreateOrder(BasePage, CreateVendorPackingSlip):
@@ -31,6 +32,7 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
     #     actions.perform()
 
     branch_type_xpath = "//span[@id='select2-branch_id-container']"
+
     # branch_type_xpath = "(//span[@role='presentation']//b)[1]"
     def branch(self, branch_name):
         time.sleep(5)
@@ -49,11 +51,12 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         elif value == "Vendors":
             pass
         #elif value == "Document No":
-            #self.get_success_message()
-            #self.send_value_to_element("document_no_xpath", self.document_no_xpath, self.doc_number)
+        #self.get_success_message()
+        #self.send_value_to_element("document_no_xpath", self.document_no_xpath, self.doc_number)
         self.click_element("submit_btn_id", self.submit_btn_id)
 
     add_product_order_xpath = "//span[@id='select2-product_id-container']"
+
     def add_products(self, product_list: list):
         count = len(product_list)
         for index in range(count):
@@ -91,6 +94,7 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         )
         actions = ActionChains(self.driver)
         actions.move_to_element(verify_btn).click().perform()
+
     def verify_order_received_url(context):
         context.driver.implicitly_wait(20)
         context.url = UrlVerification(context.driver)
@@ -126,8 +130,6 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         actions = ActionChains(self.driver)
         actions.move_to_element(verify_btn).click().perform()
 
-
-
     def search3(self):
 
         WebDriverWait(self.driver, 20).until(
@@ -139,7 +141,6 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         )
         actions = ActionChains(self.driver)
         actions.move_to_element(verify_btn).click().perform()
-
 
     def view_order(self):
 
@@ -176,6 +177,7 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         )
         actions = ActionChains(self.driver)
         actions.move_to_element(picking_slip).click().perform()
+
     def edit_order_confirmation_button(self):
         WebDriverWait(self.driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//button[@type='button']"))
@@ -198,8 +200,6 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         actions = ActionChains(self.driver)
         actions.move_to_element(download_picking_slip).click().perform()
         time.sleep(10)
-
-
 
     def edit_order_data(context):
         # Set up the WebDriver
@@ -226,7 +226,7 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         )
 
         verify_btn = WebDriverWait(self.driver, 20).until(
-        EC.element_to_be_clickable((By.XPATH, "//a[text() = '2. Picking Slip & Shipment Preparation']"))
+            EC.element_to_be_clickable((By.XPATH, "//a[text() = '2. Picking Slip & Shipment Preparation']"))
         )
         actions = ActionChains(self.driver)
         actions.move_to_element(verify_btn).click().perform()
@@ -304,7 +304,7 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         actions = ActionChains(self.driver)
         actions.move_to_element(verify_btn).click().perform()
 
-    def carrier_name(self):
+    def carrier_name(self, category, key):
         self.send_value_to_element("carrier_name", self.carrier_name,
                                    ConfigReader.carrier_name(category, key))
 
@@ -335,8 +335,6 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
             category, key))
         actions.send_keys(Keys.ENTER)
         actions.perform()
-
-
 
     def verify_add_products(self, expected_product_title, expected_flavor_title, expected_quantity_title):
 
@@ -379,8 +377,6 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
 
         return product_title, flavor_title, quantity_title
 
-
-
     def get_doc_type(self):
 
         doc_type = self.get_element_text("document_type_id", self.document_type_id)
@@ -405,8 +401,6 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
                 "added_products_table_pr_xpath", self.added_products_table_pr_xpath)
         return rows, doc_type
 
-
-
     def document_type(self, doc_type):
         self.click_element("document_type_id", self.document_type_id)
         self.search1(doc_type)
@@ -416,23 +410,13 @@ class CreateOrder(BasePage, CreateVendorPackingSlip):
         assert expected_doc_type == actual_doc_type
         return actual_doc_type
 
-   # text = "//a[@href='/orders/orderreceived/21692/change/']"
-    def verify_order_received(self, ):
+    # text = "//a[@href='/orders/orderreceived/21692/change/']"
+    def verify_order_received(self, order_no_id):
 
         tc = WebDriverWait(self.driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, "//a[@href='/orders/orderreceived/21692/change/']")))
-
 
         if tc == order_no_id:
             print('pass')
         else:
             print('fail')
-
-
-
-
-
-
-
-
-

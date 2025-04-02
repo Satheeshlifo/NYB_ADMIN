@@ -85,7 +85,7 @@ class CreateVendorPackingSlip(BasePage):
 
     def search(self, category, key):
         search = self.locate_element("search_field_xpath", self.search_field_xpath)
-        time.sleep(0.5)
+        time.sleep(5)
         actions = ActionChains(self.driver)
         actions.send_keys_to_element(search, ConfigReader.create_inbound_inventory(
             category, key))
@@ -94,7 +94,7 @@ class CreateVendorPackingSlip(BasePage):
 
     def search1(self, value):
         search = self.locate_element("search_field_xpath", self.search_field_xpath)
-        time.sleep(0.5)
+        time.sleep(5)
         actions = ActionChains(self.driver)
         actions.send_keys_to_element(search, value)
         actions.send_keys(Keys.ENTER)
@@ -110,7 +110,9 @@ class CreateVendorPackingSlip(BasePage):
         return actual_doc_type
 
     def warehouse(self, warehouse):
+        time.sleep(5)
         self.click_element("warehouse_field_id", self.warehouse_field_id)
+        time.sleep(5)
         self.search1(warehouse)
 
     def verify_warehouse(self, expected_warehouse):
@@ -142,7 +144,9 @@ class CreateVendorPackingSlip(BasePage):
             select.select_by_value("credit_card")
 
     def vendors(self, vendor):
+        time.sleep(5)
         self.click_element("vendor_field_id", self.vendor_field_id)
+        time.sleep(5)
         self.search1(vendor)
 
     def verify_vendor(self, expected_vendor):

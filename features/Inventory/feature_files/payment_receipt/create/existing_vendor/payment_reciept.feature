@@ -5,10 +5,10 @@ Feature: Product inward from existing vendor with payment receipt as document ty
     #When I navigate to the Inventory module,
     #Then I verify the Inventory module URL,
     When I navigate to the Inventory module and verified the landing page URL,
-    #When I choose the document type as "Payment_Reciept",
-    When I choose the document type as "Vendor Invoice", select warehouse, and select vendor,
-    #When I select the warehouse,
-   # When I select the vendor,
+    When I choose the document type as "Payment_Reciept",
+    #When I choose the document type as "Vendor Invoice", select warehouse, and select vendor,
+    When I select the warehouse,
+    When I select the vendor,
 
   @payment_receipt
   #Without discount tax, and other charges.
